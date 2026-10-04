@@ -126,35 +126,71 @@ setInterval(slideProjects,4000);
 
 
 
-
-
-
-
 // ===============================
 // Contact Form
 // ===============================
 
+const form = document.querySelector("#form");
+const submitBtn = form.querySelector('button[type="submit"]');
 
-const form = document.querySelector("form");
-
-
-form.addEventListener("submit",(event)=>{
-
+form.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
+    const formData = new FormData(form);
 
-
-    alert(
-        "Thank you! Your message has been received."
+    // Replace this with your NEW Web3Forms access key
+    formData.append(
+        "access_key",
+        "74b88379-1fe4-4b61-ab3d-79d1e5234bad"
     );
 
+    const originalText = submitBtn.textContent;
 
-    form.reset();
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
+    try {
+
+        const response = await fetch(
+            "https://api.web3forms.com/submit",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert(
+                "Thank you! Your message has been sent successfully."
+            );
+
+            form.reset();
+
+        } else {
+
+            alert(
+                "Error: " + data.message
+            );
+
+        }
+
+    } catch (error) {
+
+        alert(
+            "Something went wrong. Please try again."
+        );
+
+    } finally {
+
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
 
 });
-
 
 
 
