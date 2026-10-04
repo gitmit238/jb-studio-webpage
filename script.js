@@ -192,10 +192,6 @@ form.addEventListener("submit", async (event) => {
 
 });
 
-
-
-
-
 // ===============================
 // Navbar Shadow On Scroll
 // ===============================
