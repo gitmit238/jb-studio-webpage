@@ -67,13 +67,13 @@ p {
 .btn {
 
     display: inline-block;
-    padding: 14px 28px;
+    padding: 0.5rem 0.7rem;
 
     background: #2563eb;
     color: white;
-
+    margin-left: 0.8rem;
     border-radius: 8px;
-
+    font-size: 0.9rem;
     font-weight: 600;
 
     transition: 0.3s;
